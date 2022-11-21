@@ -1,0 +1,66 @@
+<div class="form">
+  <h2>Create</h2>
+  <form [formGroup]="characterForm" (ngSubmit)="onSubmit()">
+    <label
+      >Name*
+      <input type="text" formControlName="name" />
+    </label>
+    <label>
+      Image*
+      <input
+        type="file"
+        formControlName="img"
+        (change)="onFileChange($event)"
+      />
+    </label>
+    <label>
+      Clan*
+      <input type="text" formControlName="clan" />
+    </label>
+    <label>
+      Clan Symbol
+      <input
+        type="file"
+        formControlName="clanSymbol"
+        (change)="onFileChange($event)"
+      />
+    </label>
+    <label
+      >Village*
+      <select formControlName="village">
+        <option>Konoha (Leaf)</option>
+        <option>Suna (Sand)</option>
+        <option>Kiri (Mist)</option>
+        <option>Kumo (Clouds)</option>
+        <option>Iwa (Rocks)</option>
+        <option>Oto (Sound)</option>
+      </select>
+    </label>
+    <label>
+      Village Symbol
+      <input
+        type="file"
+        formControlName="villageSymbol"
+        (change)="onFileChange($event)"
+      />
+    </label>
+    <div formArrayName="jutsus">
+      <h3>Jutsus</h3>
+      <div *ngFor="let jutsu of jutsus.controls; let i = index">
+        <div [formGroupName]="i">
+          <label>
+            Jap:
+            <input type="text" formControlName="jap" />
+          </label>
+          <label>
+            Eng:
+            <input type="text" formControlName="eng" />
+          </label>
+          <button type="button" (click)="deleteJutsu(i)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <button mat-mini-fab type="button" (click)="addJutsu()">Add</button>
+    <button>Create</button>
+  </form>
+</div>
