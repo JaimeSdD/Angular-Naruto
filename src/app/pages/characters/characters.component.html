@@ -1,0 +1,10 @@
+<div class="board">
+  <div *ngFor="let character of characters" class="character-card">
+    <h2>{{ character.name }}</h2>
+    <h2>{{ character.clan }}</h2>
+    <div class="image-container">
+      <img [src]="character.img" />
+    </div>
+    <button routerLink="/characters/{{ character.id }}">See more</button>
+  </div>
+</div>

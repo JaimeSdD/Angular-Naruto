@@ -1,0 +1,39 @@
+<div *ngIf="character" class="info">
+  <div class="left">
+    <img [src]="character.img" />
+  </div>
+  <div class="right">
+    <div class="details">
+      <div class="symbol">
+        <div class="symbol-container">
+          <img [src]="character.clanSymbol" />
+        </div>
+        <h2>{{ character.name }} {{ character.clan }}</h2>
+      </div>
+      <div class="symbol">
+        <div class="symbol-container">
+          <img [src]="character.villageSymbol" />
+        </div>
+        <h3>{{ character.village }}</h3>
+      </div>
+      <ng-container *ngIf="character.jutsus.length">
+        <h3>Jutsus:</h3>
+        <ng-container *ngFor="let jutsu of character.jutsus">
+          <ul>
+            <li *ngIf="jutsu.jap !== jutsu.eng; else onlyJap">
+              {{ jutsu.jap }}<br />{{ jutsu.eng }}
+            </li>
+            <ng-template #onlyJap>
+              <li>{{ jutsu.jap }}</li>
+            </ng-template>
+          </ul>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="btn">
+      <button routerLink="/characters/edit/{{ character._id }}">Edit</button>
+      <button (click)="deleteCharacter()">Delete</button>
+      <button routerLink="/characters/">Go Back</button>
+    </div>
+  </div>
+</div>
