@@ -1,0 +1,31 @@
+<h2>Log In</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="email" (keyup)="handleError()"/>
+  <small *ngIf="authService.errorMessage" > {{authService.errorMessage.error}} </small>
+  <small
+    *ngIf="loginForm.touched && loginForm.get('email')?.hasError('required')"
+  >
+    You must add an email 
+  </small>
+  <small *ngIf="loginForm.get('email')?.hasError('pattern')">
+    Email is not valid
+  </small>
+  <input type="password" formControlName="password" (keyup)="handleError1()" />
+  <small
+    *ngIf="loginForm.touched && loginForm.get('password')?.hasError('required')"
+  >
+    You must add a password
+  </small>
+  <small *ngIf="loginForm.get('password')?.hasError('pattern')">
+    Minimum eight characters, at least one letter and one number
+  </small>
+  <small *ngIf="authService.error"> {{authService.error}} </small>
+  <button
+    [disabled]="
+      loginForm.get('email')?.errors || loginForm.get('password')?.errors
+    "
+  >
+    Log In
+  </button>
+</form>
+<p>If you don't have an account <a routerLink="/register">Sign up</a></p>

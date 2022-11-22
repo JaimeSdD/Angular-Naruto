@@ -31,8 +31,8 @@
       </ng-container>
     </div>
     <div class="btn">
-      <button routerLink="/characters/edit/{{ character._id }}">Edit</button>
-      <button (click)="deleteCharacter()">Delete</button>
+      <button *ngIf="authService.isAdmin" routerLink="/characters/edit/{{ character._id }}">Edit</button>
+      <button *ngIf="authService.isAdmin" (click)="deleteCharacter()">Delete</button>
       <button routerLink="/characters/">Go Back</button>
     </div>
   </div>

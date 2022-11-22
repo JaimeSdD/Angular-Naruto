@@ -7,6 +7,8 @@
   <nav>
     <a routerLink="">Home</a>
     <a routerLink="characters">Characters</a>
-    <a routerLink="admin">Create</a>
+    <a *ngIf="!authService.isLoggedIn" routerLink="login">Log In</a>
+    <a *ngIf="authService.isLoggedIn" (click)="logout()">Log Out</a>
+    <a *ngIf="authService.isAdmin" routerLink="admin">Create</a>
   </nav>
 </div>

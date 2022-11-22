@@ -44,9 +44,7 @@ export class EditCharacterComponent implements OnInit {
             }),
           ]),
         });
-
         this.changeDetector.detectChanges();
-        
       });
     });
 
@@ -66,8 +64,8 @@ export class EditCharacterComponent implements OnInit {
     return this.characterForm.controls['jutsus'] as FormArray;
   }
 
-  deleteJutsu(id: number){
-    this.jutsus.removeAt(id)
+  deleteJutsu(id: number) {
+    this.jutsus.removeAt(id);
   }
 
   addJutsu() {
